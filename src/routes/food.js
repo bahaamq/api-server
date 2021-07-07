@@ -1,11 +1,11 @@
 //Cashed since it's required before in other files
 const express = require('express');
 
-const Food = require('../models/food');
+// const Food = require('../models/food.sql');
 const Interface = require('../models/interface');
 const validator = require('../middlewares/validator');
 const router = express.Router();
-const food = new Interface(Food);
+const food = new Interface('food');
 
 
 router.post('/', validator, Makefood);
@@ -20,7 +20,11 @@ router.put('/:id', validator, updatefood);
 router.delete('/:id', deletefood);
 
 async function  getFood(req, res) {
+
+
   const resObj = await food.read(req.params.id);
+console.log(resObj)
+
   res.json(resObj);
 }
 async function Makefood(req, res) {
