@@ -1,8 +1,9 @@
 ('use strict');
-const supergoose = require('@code-fellows/supergoose');
+const supertest = require('supertest');
 const {server} = require('../server');
-//Accessing app to have the ability to send mockRequests
-const mockRequest = supergoose(server);
+//Accessing app to have the ability to send requests
+const request = supertest(server);
+
 describe('API Server', () => {
 
   let testId=0
@@ -15,8 +16,8 @@ describe('API Server', () => {
         "name": "Bahavfvssa",
         "price":3040
     }
-    const result = await mockRequest.post('/food').send(data);
-testId=result.body._id
+    const result = await  request.post('/food').send(data);
+
 console.log(testId)
 
     //Supertest savind data in body object
@@ -26,19 +27,17 @@ console.log(testId)
 
 
   it('get food by id', async () => {
-    const result = await mockRequest.get(`/food/${testId}`);
-
-    console.log(result.body.length)
-expect(result.body.length).toBeGreaterThan(0)
+    const result = await request.get(`/food/${testId}`);
 
     expect(result.status).toEqual(200);
   });
 
 
   it('get all food', async () => {
-    const result = await mockRequest.get(`/food/${testId}`);
+
+
+    const result = await request.get(`/food/${testId}`);
     expect(result.status).toEqual(200);
-    expect(result.body.length).toBeGreaterThan(0)
 
   });
 
@@ -48,12 +47,12 @@ expect(result.body.length).toBeGreaterThan(0)
         "name": "Bahavfvssa",
         "price":3040
     }
-    const result = await mockRequest.put(`/food/${testId}`).send(NewUpdatedData);
+    const result = await request.put(`/food/${testId}`).send(NewUpdatedData);
     expect(result.status).toEqual(200);
   });
 
   it('delete food by id', async () => {
-    const result = await mockRequest.delete(`/food/${testId}`);
+    const result = await request.delete(`/food/${testId}`);
     expect(result.status).toEqual(200);
   });
 

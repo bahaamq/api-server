@@ -1,13 +1,13 @@
-'use strict';
+// 'use strict';
 
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 
 
-const foodSchema = mongoose.Schema({
-  name:{type:String ,required:true},
-  price:{type:Number}
-})
+// const foodSchema = mongoose.Schema({
+//   name:{type:String ,required:true},
+//   price:{type:Number}
+// })
 
-const foodModel = mongoose.model('food',foodSchema)
+// const foodModel = mongoose.model('food',foodSchema)
 
-module.exports = foodModel;
+// module.exports = foodModel;

@@ -6,7 +6,7 @@ const errorHandler = require('./error-handlers/500');
 // const validator = require('./middlewares/validator')
 const app = express();
 const foodRouter = require('./routes/food');
-const clothesRouter = require('./routes/food');
+const clothesRouter = require('./routes/clothes');
 const logger=require('./middlewares/logger')
 //Middlewares will be called before each http req
 app.use(express.json())
