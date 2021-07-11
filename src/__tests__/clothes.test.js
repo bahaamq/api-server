@@ -4,9 +4,20 @@ const supertest = require('supertest');
 const {server} = require('../server');
 //Accessing app to have the ability to send requests
 const request = supertest(server);
+const queries = require('../queries');
+
+
+
+
 
 describe('API Server', () => {
 
+  beforeAll(async () => {
+    await queries.connect();
+  });
+  afterAll(async () => {
+    await queries.end();
+  });
   let testId=1
   it('404 on bad route and method', async () => {
     const response = await request.get('/foo');
